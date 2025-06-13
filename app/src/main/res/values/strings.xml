@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">SHUTTLETIME SPORT</string>
+    <string-array name="jenis_lapangan">
+        <item>Indoor</item>
+        <item>Outdoor</item>
+    </string-array>
+
+
+</resources>

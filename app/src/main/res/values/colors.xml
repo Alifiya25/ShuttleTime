@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="green_primary">#2E7D32</color> <!-- Hijau lapangan badminton -->
+    <color name="green_hint">#A5D6A7</color>   <!-- Hijau muda -->
+    <color name="green_dark">#1B5E20</color>   <!-- Hijau tua -->
+    <color name="gray_text">#616161</color>
+    <color name="pastel_green_card">#D6F5D6</color>
+</resources>
