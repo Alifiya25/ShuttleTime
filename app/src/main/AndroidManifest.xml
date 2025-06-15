@@ -18,6 +18,21 @@
         android:theme="@style/Theme.SHUTTLETIMESPORT"
         tools:targetApi="31">
         <activity
+            android:name=".KelolaJadwalActivity"
+            android:exported="false" />
+        <activity
+            android:name=".RiwayatBookingActivity"
+            android:exported="false" />
+        <activity
+            android:name=".StatusBookingActivity"
+            android:exported="false" />
+        <activity
+            android:name=".KelolaBookingActivity"
+            android:exported="false" />
+        <activity
+            android:name=".BookingActivity"
+            android:exported="false" />
+        <activity
             android:name=".RiwayatBookingCustomerActivity"
             android:exported="false" />
         <activity

@@ -1,6 +1,9 @@
 package com.example.shuttletimesport;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -12,6 +15,7 @@ public class DetailLapanganCustomerActivity extends AppCompatActivity {
 
     TextView tvNama, tvJenis, tvHarga, tvFasilitas;
     ImageView ivGambar;
+    Button btnBooking; // Tambahan
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,9 +27,11 @@ public class DetailLapanganCustomerActivity extends AppCompatActivity {
         tvHarga = findViewById(R.id.tvHarga);
         tvFasilitas = findViewById(R.id.tvFasilitas);
         ivGambar = findViewById(R.id.ivGambar);
+        btnBooking = findViewById(R.id.btnBooking); // Ambil tombol booking dari layout
 
-        // Ambil objek Lapangan
+        // Ambil objek Lapangan dari intent
         Lapangan lapangan = (Lapangan) getIntent().getSerializableExtra("lapangan");
+
         if (lapangan != null) {
             tvNama.setText(lapangan.getNama());
             tvJenis.setText("Jenis: " + lapangan.getJenis());
@@ -36,9 +42,25 @@ public class DetailLapanganCustomerActivity extends AppCompatActivity {
                     .load("http://10.0.2.2/shuttletime_api/uploads/" + lapangan.getGambar())
                     .placeholder(R.drawable.placeholder)
                     .into(ivGambar);
+
+
+
+            // Booking Button Logic
+            btnBooking.setOnClickListener(v -> {
+                Intent intent = new Intent(DetailLapanganCustomerActivity.this, BookingActivity.class);
+                intent.putExtra("lapangan", lapangan); // Kirim data lapangan
+
+                SharedPreferences sharedPref = getSharedPreferences("user_session", MODE_PRIVATE);
+                String namaUser = sharedPref.getString("nama", "");
+                intent.putExtra("nama_user", namaUser); // Kirim nama user juga
+
+                startActivity(intent);
+            });
+
         }
+
+        // Tombol kembali
         ImageView btnBack = findViewById(R.id.btnBack);
         btnBack.setOnClickListener(v -> finish());
-
     }
 }

@@ -25,6 +25,7 @@ android {
             )
         }
     }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
@@ -38,28 +39,34 @@ configurations.all {
 }
 
 dependencies {
-
+    // AndroidX
     implementation(libs.appcompat)
-    implementation(libs.material)
     implementation(libs.activity)
     implementation(libs.constraintlayout)
 
-    implementation("com.android.volley:volley:1.2.1")
-    implementation("com.google.android.material:material:1.12.0")
+    // Material Design (HANYA SATU VERSI!)
+    implementation("com.google.android.material:material:1.12.0") // Sudah mendukung Material 3
 
+    // Network Libraries
+    implementation("com.android.volley:volley:1.2.1")
     implementation("com.squareup.okhttp3:okhttp:4.9.3")
     implementation("com.squareup.okhttp3:logging-interceptor:4.9.3")
 
+    // Retrofit & Gson
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
     implementation("com.squareup.retrofit2:converter-gson:2.9.0")
-    implementation("com.google.code.gson:gson:2.10.1")
     implementation("com.squareup.retrofit2:converter-scalars:2.9.0")
-    implementation ("de.hdodenhof:circleimageview:3.1.0")
-    implementation ("com.github.bumptech.glide:glide:4.16.0")
-    annotationProcessor ("com.github.bumptech.glide:compiler:4.16.0")
+    implementation("com.google.code.gson:gson:2.10.1")
 
+    // UI Libraries
+    implementation("de.hdodenhof:circleimageview:3.1.0")
+    implementation("com.github.bumptech.glide:glide:4.16.0")
+    annotationProcessor("com.github.bumptech.glide:compiler:4.16.0")
 
+    // Unit Testing
     testImplementation(libs.junit)
+
+    // Android Testing
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
 }

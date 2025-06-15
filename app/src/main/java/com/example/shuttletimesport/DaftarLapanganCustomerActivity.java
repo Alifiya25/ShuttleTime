@@ -25,7 +25,7 @@ public class DaftarLapanganCustomerActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private LapanganUserAdapter adapter;
     private List<Lapangan> lapanganList;
-    private static final String URL = "http://10.0.2.2/shuttletime_api/get_lapangan.php";
+    private static final String URL = "http://192.168.1.9/shuttletime_api/get_lapangan.php";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

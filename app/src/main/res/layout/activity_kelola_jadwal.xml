@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:padding="16dp">
+
+    <!-- Tombol Kembali -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnKembali"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Kembali"
+        android:textColor="@color/green_primary"
+        app:icon="@drawable/ic_arrow_back"
+        app:iconTint="@color/green_primary"
+        app:iconPadding="8dp"
+        app:iconGravity="textStart"
+        style="@style/Widget.Material3.Button.OutlinedButton"
+        app:strokeColor="@color/green_primary"
+        app:strokeWidth="1dp"
+        android:layout_marginBottom="16dp"
+        app:cornerRadius="12dp"/>
+
+    <!-- Filter Section -->
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="8dp"
+        app:cardElevation="2dp"
+        app:strokeColor="@color/green_hint"
+        app:strokeWidth="1dp"
+        android:layout_marginBottom="16dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnPilihTanggal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Filter Tanggal"
+                style="@style/Widget.Material3.Button.OutlinedButton"
+                app:icon="@drawable/ic_calendar"
+                app:iconTint="@color/green_primary"
+                app:strokeColor="@color/green_primary"
+                app:strokeWidth="1dp"
+                android:textColor="@color/green_primary"
+                app:cornerRadius="8dp" />
+
+            <TextView
+                android:id="@+id/tvTanggalTerpilih"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Tanggal: Semua"
+                android:textSize="14sp"
+                android:textColor="@color/green_dark"
+                android:layout_marginTop="12dp"
+                android:drawableStart="@drawable/ic_event"
+                android:drawablePadding="8dp"
+                android:drawableTint="@color/green_primary" />
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+    <!-- ProgressBar -->
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:visibility="gone"
+        style="?android:attr/progressBarStyleLarge" />
+
+    <!-- RecyclerView -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvLapanganJadwal"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:clipToPadding="false"
+        android:paddingTop="8dp"
+        android:paddingBottom="16dp" />
+
+    <!-- Empty State View -->
+    <LinearLayout
+        android:id="@+id/emptyState"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:visibility="gone"
+        android:padding="32dp">
+
+        <ImageView
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:src="@drawable/ic_empty_schedule"
+            app:tint="@color/green_hint" />
+
+        <TextView
+            android:id="@+id/emptyText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tidak ada jadwal tersedia"
+            android:textSize="16sp"
+            android:textColor="@color/green_dark"
+            android:layout_marginTop="16dp"
+            android:textAlignment="center" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnCobaLagi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Coba Lagi"
+            android:layout_marginTop="16dp"
+            app:icon="@drawable/ic_refresh"
+            app:iconTint="@android:color/white"
+            app:backgroundTint="@color/green_primary" />
+    </LinearLayout>
+
+</LinearLayout>

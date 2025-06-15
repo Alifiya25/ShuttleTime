@@ -1,9 +1,12 @@
 <resources>
     <string name="app_name">SHUTTLETIME SPORT</string>
+
     <string-array name="jenis_lapangan">
         <item>Indoor</item>
         <item>Outdoor</item>
     </string-array>
 
-
+    <!-- Tambahan untuk DrawerLayout -->
+    <string name="navigation_drawer_open">Buka menu navigasi</string>
+    <string name="navigation_drawer_close">Tutup menu navigasi</string>
 </resources>
