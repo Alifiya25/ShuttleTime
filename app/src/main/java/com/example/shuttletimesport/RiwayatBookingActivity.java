@@ -30,7 +30,7 @@ public class RiwayatBookingActivity extends AppCompatActivity {
     private List<Booking> bookingList;
     private ProgressBar progressBar;
 
-    private static final String URL_RIWAYAT = "http://10.0.2.2/shuttletime_api/get_bookings.php?status=selesai";
+    private static final String URL_RIWAYAT = "http://192.168.1.9/shuttletime_api/get_bookings.php?status=selesai";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

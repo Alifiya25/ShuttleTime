@@ -25,7 +25,7 @@ public class KelolaBookingActivity extends AppCompatActivity {
     StatusBookingAdapter adapter; // ✅ GANTI ke adapter admin
     List<Booking> bookingList;
 
-    String URL_GET = "http://10.0.2.2/shuttletime_api/get_bookings.php";
+    String URL_GET = "http://192.168.1.9/shuttletime_api/get_bookings.php";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

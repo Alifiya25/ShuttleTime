@@ -24,10 +24,11 @@ import java.util.Map;
 
 public class RegisterActivity extends AppCompatActivity {
 
-    EditText etUsername, etPassword, etEmail, etNoHp;
+    EditText etUsername, etPassword, etNamaLengkap, etNoHp;
     Button btnRegister;
     TextView tvLogin;
 
+    // GANTI IP SESUAI IP KOMPUTER KAMU
     private static final String URL = "http://10.0.2.2/shuttletime_api/register.php";
 
     @Override
@@ -35,38 +36,25 @@ public class RegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
+        // Inisialisasi komponen UI
         etUsername = findViewById(R.id.etUsername);
         etPassword = findViewById(R.id.etPassword);
-        etEmail = findViewById(R.id.etEmail);
+        etNamaLengkap = findViewById(R.id.etNamaLengkap);
         etNoHp = findViewById(R.id.etNoHp);
         btnRegister = findViewById(R.id.btnRegister);
         tvLogin = findViewById(R.id.tvLogin);
 
+        // Ketika tombol daftar ditekan
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 final String username = etUsername.getText().toString().trim();
                 final String password = etPassword.getText().toString().trim();
-                final String email = etEmail.getText().toString().trim();
+                final String namaLengkap = etNamaLengkap.getText().toString().trim();
                 final String noHp = etNoHp.getText().toString().trim();
 
-                if (username.isEmpty() || password.isEmpty() || email.isEmpty() || noHp.isEmpty()) {
+                if (username.isEmpty() || password.isEmpty() || namaLengkap.isEmpty() || noHp.isEmpty()) {
                     Toast.makeText(RegisterActivity.this, "Semua field harus diisi!", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-
-                if (password.length() < 6) {
-                    Toast.makeText(RegisterActivity.this, "Password minimal 6 karakter!", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-
-                if (noHp.length() < 10 || !noHp.matches("[0-9]+")) {
-                    Toast.makeText(RegisterActivity.this, "Nomor HP tidak valid!", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-
-                if (!android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-                    Toast.makeText(RegisterActivity.this, "Format email tidak valid!", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
@@ -81,8 +69,7 @@ public class RegisterActivity extends AppCompatActivity {
                                     Toast.makeText(RegisterActivity.this, message, Toast.LENGTH_SHORT).show();
 
                                     if (success) {
-                                        startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
-                                        finish();
+                                        finish(); // kembali ke halaman sebelumnya
                                     }
                                 } catch (JSONException e) {
                                     e.printStackTrace();
@@ -101,7 +88,7 @@ public class RegisterActivity extends AppCompatActivity {
                         Map<String, String> params = new HashMap<>();
                         params.put("username", username);
                         params.put("password", password);
-                        params.put("email", email);
+                        params.put("nama_lengkap", namaLengkap);
                         params.put("no_hp", noHp);
                         return params;
                     }
@@ -111,13 +98,13 @@ public class RegisterActivity extends AppCompatActivity {
             }
         });
 
-        // Tambahan agar bisa pindah ke LoginActivity
+        // Ketika link "Sudah punya akun? Login" diklik
         tvLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent loginIntent = new Intent(RegisterActivity.this, LoginActivity.class);
-                startActivity(loginIntent);
-                finish();
+                Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
+                startActivity(intent);
+                finish(); // opsional
             }
         });
     }

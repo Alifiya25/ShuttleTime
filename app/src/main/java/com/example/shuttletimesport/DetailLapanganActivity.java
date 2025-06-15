@@ -107,7 +107,7 @@ public class DetailLapanganActivity extends AppCompatActivity {
     }
 
     private void hapusLapanganDariServer(int id) {
-        String url = "http://10.0.2.2/shuttletime_api/delete_lapangan.php";
+        String url = "http://shuttletime.rf.gd/delete_lapangan.php";
 
         StringRequest request = new StringRequest(Request.Method.POST, url,
                 response -> {
