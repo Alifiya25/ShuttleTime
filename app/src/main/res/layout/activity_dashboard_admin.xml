@@ -5,14 +5,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    android:background="@color/green_hint">
+    android:background="@android:color/white">
 
-    <!-- Konten utama: toolbar + konten scroll -->
+    <!-- Konten Utama -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
+        <!-- Toolbar -->
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/admin_toolbar"
             android:layout_width="match_parent"
@@ -23,134 +24,188 @@
             app:navigationIcon="@drawable/sidebar"
             app:navigationIconTint="@android:color/white" />
 
+        <!-- Konten Scroll -->
         <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:clipToPadding="false">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:padding="24dp">
+                android:clipToPadding="false">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Selamat Datang, Admin"
-                    android:textSize="22sp"
-                    android:textStyle="bold"
-                    android:textColor="@color/green_dark"
-                    android:layout_marginBottom="24dp" />
-
-                <!-- Kelola Lapangan -->
-                <androidx.cardview.widget.CardView
+                <!-- ✅ Gambar Header + Teks -->
+                <FrameLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="20dp"
-                    app:cardCornerRadius="16dp"
-                    app:cardElevation="6dp"
-                    app:cardBackgroundColor="@color/white">
+                    android:layout_height="200dp">
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/lapangan2"
+                        android:contentDescription="Header Image" />
 
                     <LinearLayout
-                        android:id="@+id/cardKelolaLapangan"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:gravity="center_vertical"
-                        android:padding="20dp"
-                        android:clickable="true"
-                        android:focusable="true">
-
-                        <ImageView
-                            android:layout_width="64dp"
-                            android:layout_height="64dp"
-                            android:src="@drawable/lapangan"
-                            android:layout_marginEnd="20dp" />
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:gravity="center"
+                        android:background="#80000000"
+                        android:padding="16dp">
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Kelola Lapangan"
-                            android:textSize="18sp"
+                            android:text="ShuttleTime"
+                            android:textSize="24sp"
                             android:textStyle="bold"
-                            android:textColor="@color/green_dark" />
-                    </LinearLayout>
-                </androidx.cardview.widget.CardView>
-
-                <!-- Kelola Booking -->
-                <androidx.cardview.widget.CardView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="20dp"
-                    app:cardCornerRadius="16dp"
-                    app:cardElevation="6dp"
-                    app:cardBackgroundColor="@color/white">
-
-                    <LinearLayout
-                        android:id="@+id/cardKelolaBooking"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:gravity="center_vertical"
-                        android:padding="20dp"
-                        android:clickable="true"
-                        android:focusable="true">
-
-                        <ImageView
-                            android:layout_width="64dp"
-                            android:layout_height="64dp"
-                            android:src="@drawable/booking"
-                            android:layout_marginEnd="20dp" />
+                            android:textColor="@android:color/white" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Kelola Booking"
-                            android:textSize="18sp"
-                            android:textStyle="bold"
-                            android:textColor="@color/green_dark" />
+                            android:text="Aplikasi Booking GOR Bulutangkis"
+                            android:textSize="16sp"
+                            android:textColor="@android:color/white" />
                     </LinearLayout>
-                </androidx.cardview.widget.CardView>
+                </FrameLayout>
 
-                <!-- Kelola Jadwal -->
-                <androidx.cardview.widget.CardView
+                <!-- Konten Admin -->
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:cardCornerRadius="16dp"
-                    app:cardElevation="6dp"
-                    app:cardBackgroundColor="@color/white">
+                    android:orientation="vertical"
+                    android:padding="24dp">
 
-                    <LinearLayout
-                        android:id="@+id/cardKelolaJadwal"
+                    <!-- Header -->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Selamat Datang, Admin"
+                        android:textSize="22sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/green_dark"
+                        android:layout_marginBottom="24dp" />
+
+                    <!-- Kelola Lapangan -->
+                    <com.google.android.material.card.MaterialCardView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:gravity="center_vertical"
-                        android:padding="20dp"
-                        android:clickable="true"
-                        android:focusable="true">
+                        android:layout_marginBottom="24dp"
+                        app:cardCornerRadius="16dp"
+                        app:cardElevation="0dp"
+                        app:strokeColor="@color/green_hint"
+                        app:strokeWidth="1dp">
 
-                        <ImageView
-                            android:layout_width="64dp"
-                            android:layout_height="64dp"
-                            android:src="@drawable/status_booking"
-                            android:layout_marginEnd="20dp" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
+                        <LinearLayout
+                            android:id="@+id/cardKelolaLapangan"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Kelola Jadwal"
-                            android:textSize="18sp"
-                            android:textStyle="bold"
-                            android:textColor="@color/green_dark" />
-                    </LinearLayout>
-                </androidx.cardview.widget.CardView>
+                            android:orientation="horizontal"
+                            android:padding="20dp"
+                            android:gravity="center_vertical"
+                            android:clickable="true"
+                            android:focusable="true">
 
+                            <ImageView
+                                android:layout_width="64dp"
+                                android:layout_height="64dp"
+                                android:src="@drawable/lapangan"
+                                android:layout_marginEnd="20dp"
+                                android:contentDescription="Ikon Lapangan" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Kelola Lapangan"
+                                android:textSize="18sp"
+                                android:textStyle="bold"
+                                android:textColor="@color/green_dark" />
+                        </LinearLayout>
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <!-- Kelola Booking -->
+                    <com.google.android.material.card.MaterialCardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="24dp"
+                        app:cardCornerRadius="16dp"
+                        app:cardElevation="0dp"
+                        app:strokeColor="@color/green_hint"
+                        app:strokeWidth="1dp">
+
+                        <LinearLayout
+                            android:id="@+id/cardKelolaBooking"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:padding="20dp"
+                            android:gravity="center_vertical"
+                            android:clickable="true"
+                            android:focusable="true">
+
+                            <ImageView
+                                android:layout_width="64dp"
+                                android:layout_height="64dp"
+                                android:src="@drawable/booking"
+                                android:layout_marginEnd="20dp"
+                                android:contentDescription="Ikon Booking" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Kelola Booking"
+                                android:textSize="18sp"
+                                android:textStyle="bold"
+                                android:textColor="@color/green_dark" />
+                        </LinearLayout>
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <!-- Kelola Jadwal -->
+                    <com.google.android.material.card.MaterialCardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="24dp"
+                        app:cardCornerRadius="16dp"
+                        app:cardElevation="0dp"
+                        app:strokeColor="@color/green_hint"
+                        app:strokeWidth="1dp">
+
+                        <LinearLayout
+                            android:id="@+id/cardKelolaJadwal"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:padding="20dp"
+                            android:gravity="center_vertical"
+                            android:clickable="true"
+                            android:focusable="true">
+
+                            <ImageView
+                                android:layout_width="64dp"
+                                android:layout_height="64dp"
+                                android:src="@drawable/status_booking"
+                                android:layout_marginEnd="20dp"
+                                android:contentDescription="Ikon Jadwal" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Kelola Jadwal"
+                                android:textSize="18sp"
+                                android:textStyle="bold"
+                                android:textColor="@color/green_dark" />
+                        </LinearLayout>
+                    </com.google.android.material.card.MaterialCardView>
+                </LinearLayout>
             </LinearLayout>
         </ScrollView>
     </LinearLayout>
 
-    <!-- Navigation Drawer Sidebar -->
+    <!-- Sidebar Navigasi -->
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/admin_navigation_view"
         android:layout_width="wrap_content"

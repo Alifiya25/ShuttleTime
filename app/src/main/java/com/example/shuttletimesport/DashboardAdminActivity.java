@@ -1,6 +1,7 @@
 package com.example.shuttletimesport;
 
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -10,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.ContextCompat;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
@@ -33,21 +35,31 @@ public class DashboardAdminActivity extends AppCompatActivity
         toolbar = findViewById(R.id.admin_toolbar);
         navigationView = findViewById(R.id.admin_navigation_view);
 
+        // Set toolbar
         setSupportActionBar(toolbar);
+        toolbar.setTitleTextColor(getResources().getColor(android.R.color.white));
 
+        // Atur drawer toggle (garis 3)
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawerLayout, toolbar,
-                R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-
+                R.string.navigation_drawer_open, R.string.navigation_drawer_close
+        );
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
 
+        // Ubah warna ikon hamburger jadi putih
+        toggle.getDrawerArrowDrawable().setColor(
+                ContextCompat.getColor(this, android.R.color.white)
+        );
+
         navigationView.setNavigationItemSelectedListener(this);
 
+        // Kartu menu
         cardKelolaLapangan = findViewById(R.id.cardKelolaLapangan);
         cardKelolaBooking = findViewById(R.id.cardKelolaBooking);
-        cardKelolaJadwal = findViewById(R.id.cardKelolaJadwal);  // Tambahan id cardKelolaJadwal
+        cardKelolaJadwal = findViewById(R.id.cardKelolaJadwal);
 
+        // Aksi tombol
         cardKelolaLapangan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -64,7 +76,6 @@ public class DashboardAdminActivity extends AppCompatActivity
                 startActivity(intent);
             }
         });
-
 
         cardKelolaJadwal.setOnClickListener(new View.OnClickListener() {
             @Override

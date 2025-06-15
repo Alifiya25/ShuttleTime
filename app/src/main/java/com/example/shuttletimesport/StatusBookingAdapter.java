@@ -120,7 +120,7 @@ public class StatusBookingAdapter extends RecyclerView.Adapter<StatusBookingAdap
 
     // Fungsi update status ke server
     private void updateStatusBooking(Context context, int idBooking, String statusBaru, Runnable onSuccess) {
-        String url = "http://192.168.1.9/shuttletime_api/update_status.php";
+        String url = "http://10.0.2.2/shuttletime_api/update_status.php";
 
         StringRequest request = new StringRequest(Request.Method.POST, url,
                 response -> {

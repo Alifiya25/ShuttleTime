@@ -32,7 +32,7 @@ public class DaftarLapanganActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private LapanganAdapter adapter;
     private List<Lapangan> lapanganList;
-    private static final String URL = "http://192.168.1.10/shuttletime_api/get_lapangan.php";
+    private static final String URL = "http://10.0.2.2/shuttletime_api/get_lapangan.php";
 
 
     @Override

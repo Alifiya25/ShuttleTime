@@ -40,7 +40,7 @@ public class KelolaJadwalActivity extends AppCompatActivity {
     private List<KelolaJadwalAdapter.LapanganWithJadwal> lapanganList = new ArrayList<>();
 
     private String tanggalFilter = null;
-    private static final String URL = "http://192.168.1.9/shuttletime_api/get_lapangan.php";
+    private static final String URL = "http://10.0.2.2/shuttletime_api/get_lapangan.php";
 
     private LinearLayout emptyState;
     private ProgressBar progressBar;

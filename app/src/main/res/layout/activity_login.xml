@@ -13,7 +13,6 @@
         android:orientation="vertical"
         android:gravity="center">
 
-        <!-- Container putih -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -43,13 +42,13 @@
                 android:textColor="#2E7D32"
                 android:layout_marginBottom="24dp" />
 
-            <!-- Username -->
+            <!-- Username atau Email -->
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/usernameLayout"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Username"
+                android:hint="Email atau Username"
                 app:startIconDrawable="@drawable/ic_person"
                 app:startIconTint="#2E7D32"
                 app:boxStrokeColor="#2E7D32"
@@ -61,7 +60,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textColor="#2E7D32"
-                    android:inputType="text" />
+                    android:inputType="textEmailAddress" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <!-- Password -->

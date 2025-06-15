@@ -33,51 +33,32 @@
             android:layout_marginStart="16dp" />
     </LinearLayout>
 
-
-    <!-- Header dengan gambar dan deskripsi -->
+    <!-- Header Deskripsi Tanpa Gambar -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:layout_margin="16dp"
         android:background="@color/pastel_green_card"
-        android:padding="12dp"
-        android:elevation="4dp">
+        android:padding="16dp"
+        android:elevation="4dp"
+        android:gravity="center_horizontal">
 
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="200dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="LAPANGAN"
+            android:textColor="@color/green_dark"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="4dp" />
 
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:scaleType="centerCrop"
-                android:src="@drawable/lapangan2"
-                android:contentDescription="Header Image"
-                android:background="@color/green_dark" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="LAPANGAN"
-                    android:textColor="@android:color/white"
-                    android:textSize="24sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Lapangan dan Fasilitas"
-                    android:textColor="@android:color/white"
-                    android:textSize="18sp" />
-            </LinearLayout>
-        </FrameLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Lapangan dan Fasilitas"
+            android:textColor="@color/green_dark"
+            android:textSize="18sp" />
     </LinearLayout>
 
     <!-- Judul -->

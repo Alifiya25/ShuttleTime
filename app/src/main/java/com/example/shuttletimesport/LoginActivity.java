@@ -3,7 +3,7 @@ package com.example.shuttletimesport;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.text.TextUtils; // Tambahkan import ini
+import android.text.TextUtils;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
@@ -37,18 +37,21 @@ public class LoginActivity extends AppCompatActivity {
         Button loginButton = findViewById(R.id.loginButton);
         TextView registerLink = findViewById(R.id.registerLink);
 
-        // Pindah ke halaman register
         registerLink.setOnClickListener(v -> {
             startActivity(new Intent(this, RegisterActivity.class));
         });
 
-        // Tombol login
         loginButton.setOnClickListener(v -> {
             String username = usernameInput.getText().toString().trim();
             String password = passwordInput.getText().toString().trim();
 
-            if (TextUtils.isEmpty(username) || TextUtils.isEmpty(password)) {
-                Toast.makeText(this, "Username dan password harus diisi", Toast.LENGTH_SHORT).show();
+            if (TextUtils.isEmpty(username)) {
+                usernameInput.setError("Email atau Username harus diisi");
+                return;
+            }
+
+            if (TextUtils.isEmpty(password)) {
+                passwordInput.setError("Password harus diisi");
                 return;
             }
 
@@ -57,11 +60,11 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void loginUser(String username, String password) {
-        String url = "http://192.168.1.9/shuttletime_api/login.php";
+        String url = "http://10.0.2.2/shuttletime_api/login.php";
 
         StringRequest request = new StringRequest(Request.Method.POST, url,
                 response -> {
-                    Log.d(TAG, "Raw Response: " + response); // Debugging
+                    Log.d(TAG, "Raw Response: " + response);
                     try {
                         JSONObject jsonResponse = new JSONObject(response);
 
@@ -73,21 +76,12 @@ public class LoginActivity extends AppCompatActivity {
                         if (jsonResponse.getBoolean("success")) {
                             JSONObject user = jsonResponse.getJSONObject("user");
 
-                            // Simpan data user dengan pengecekan field
                             SharedPreferences sharedPref = getSharedPreferences("user_pref", MODE_PRIVATE);
                             SharedPreferences.Editor editor = sharedPref.edit();
                             editor.putInt("id_user", user.getInt("id_user"));
-
-                            // Gunakan username jika nama_lengkap tidak ada
-                            String nama = user.has("nama_lengkap") ? user.getString("nama_lengkap") : user.getString("username");
-                            editor.putString("nama_lengkap", nama);
-
+                            editor.putString("nama_lengkap", user.optString("nama_lengkap", user.getString("username")));
                             editor.putString("role", user.getString("role"));
                             editor.apply();
-
-                            // Debug saved data
-                            Log.d(TAG, "Saved user data - ID: " + user.getInt("id_user") +
-                                    ", Name: " + nama + ", Role: " + user.getString("role"));
 
                             redirectUser(user.getString("role"));
                         } else {
@@ -97,7 +91,7 @@ public class LoginActivity extends AppCompatActivity {
                         }
                     } catch (JSONException e) {
                         Log.e(TAG, "JSON Error: " + e.getMessage());
-                        Toast.makeText(this, "Format data tidak valid: " + e.getMessage(), Toast.LENGTH_LONG).show();
+                        Toast.makeText(this, "Data tidak valid: " + e.getMessage(), Toast.LENGTH_LONG).show();
                     }
                 },
                 error -> {
@@ -108,7 +102,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<>();
-                params.put("username", username);
+                params.put("username", username); // Bisa username atau email
                 params.put("password", password);
                 return params;
             }
