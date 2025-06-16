@@ -24,7 +24,7 @@ import java.util.Map;
 
 public class RegisterActivity extends AppCompatActivity {
 
-    EditText etUsername, etPassword, etEmail, etNoHp;
+    EditText etNamaLengkap, etUsername, etPassword, etEmail, etNoHp;
     Button btnRegister;
     TextView tvLogin;
 
@@ -35,6 +35,7 @@ public class RegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
+        etNamaLengkap = findViewById(R.id.etNamaLengkap);
         etUsername = findViewById(R.id.etUsername);
         etPassword = findViewById(R.id.etPassword);
         etEmail = findViewById(R.id.etEmail);
@@ -45,12 +46,14 @@ public class RegisterActivity extends AppCompatActivity {
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                final String namaLengkap = etNamaLengkap.getText().toString().trim();
                 final String username = etUsername.getText().toString().trim();
                 final String password = etPassword.getText().toString().trim();
                 final String email = etEmail.getText().toString().trim();
                 final String noHp = etNoHp.getText().toString().trim();
 
-                if (username.isEmpty() || password.isEmpty() || email.isEmpty() || noHp.isEmpty()) {
+                // Validasi
+                if (namaLengkap.isEmpty() || username.isEmpty() || password.isEmpty() || email.isEmpty() || noHp.isEmpty()) {
                     Toast.makeText(RegisterActivity.this, "Semua field harus diisi!", Toast.LENGTH_SHORT).show();
                     return;
                 }
@@ -70,6 +73,7 @@ public class RegisterActivity extends AppCompatActivity {
                     return;
                 }
 
+                // Kirim ke server
                 StringRequest stringRequest = new StringRequest(Request.Method.POST, URL,
                         new Response.Listener<String>() {
                             @Override
@@ -99,6 +103,7 @@ public class RegisterActivity extends AppCompatActivity {
                     @Override
                     protected Map<String, String> getParams() {
                         Map<String, String> params = new HashMap<>();
+                        params.put("nama_lengkap", namaLengkap);
                         params.put("username", username);
                         params.put("password", password);
                         params.put("email", email);
@@ -111,7 +116,7 @@ public class RegisterActivity extends AppCompatActivity {
             }
         });
 
-        // Tambahan agar bisa pindah ke LoginActivity
+        // Pindah ke Login
         tvLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -122,4 +127,3 @@ public class RegisterActivity extends AppCompatActivity {
         });
     }
 }
-

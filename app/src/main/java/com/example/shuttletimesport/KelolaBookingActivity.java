@@ -22,7 +22,7 @@ import java.util.List;
 public class KelolaBookingActivity extends AppCompatActivity {
 
     RecyclerView recyclerView;
-    StatusBookingAdapter adapter; // ✅ GANTI ke adapter admin
+    StatusBookingAdapter adapter; // Adapter untuk menampilkan list booking
     List<Booking> bookingList;
 
     String URL_GET = "https://shuttletime.my.id/get_bookings.php";
@@ -41,7 +41,6 @@ public class KelolaBookingActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         bookingList = new ArrayList<>();
 
-        // ✅ Gunakan StatusBookingAdapter dan beri nilai isAdmin = true
         adapter = new StatusBookingAdapter(bookingList, true);
         recyclerView.setAdapter(adapter);
 
@@ -57,17 +56,23 @@ public class KelolaBookingActivity extends AppCompatActivity {
                     for (int i = 0; i < response.length(); i++) {
                         try {
                             JSONObject obj = response.getJSONObject(i);
-                            Booking b = new Booking(
-                                    obj.getInt("id"),
-                                    obj.getString("nama"),
-                                    obj.getString("tanggal"),
-                                    obj.getString("jam_mulai"),
-                                    obj.getString("jam_selesai"),
-                                    obj.getInt("id_lapangan"),
-                                    obj.getString("status"),
-                                    obj.getString("nama_lapangan"),
-                                    obj.getDouble("total_harga")
-                            );
+
+                            Booking b = new Booking(); // Constructor kosong
+                            b.setId(obj.getInt("id"));
+                            b.setNama(obj.getString("nama"));
+                            b.setTanggal(obj.getString("tanggal"));
+                            b.setJamMulai(obj.getString("jam_mulai"));
+                            b.setJamSelesai(obj.getString("jam_selesai"));
+                            b.setIdLapangan(obj.getInt("id_lapangan"));
+                            b.setStatus(obj.getString("status"));
+                            b.setNamaLapangan(obj.getString("nama_lapangan"));
+                            b.setTotalHarga(obj.getDouble("total_harga"));
+
+                            // Jika field id_user ada di JSON, bisa di-set juga
+                            if (obj.has("id_user")) {
+                                b.setIdUser(obj.getInt("id_user"));
+                            }
+
                             bookingList.add(b);
                         } catch (JSONException e) {
                             e.printStackTrace();

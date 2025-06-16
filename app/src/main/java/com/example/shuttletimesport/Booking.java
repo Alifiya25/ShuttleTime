@@ -24,13 +24,16 @@ public class Booking {
     @SerializedName("total_harga")
     private double totalHarga;
 
-    // ✅ Constructor kosong (diperlukan untuk parsing manual JSON)
+    @SerializedName("id_user")
+    private int idUser;
+
+    // ✅ Constructor kosong (penting untuk Retrofit/Gson)
     public Booking() {
     }
 
-    // Constructor lengkap (jika ingin digunakan)
+    // Constructor lengkap (opsional)
     public Booking(int id, String nama, String tanggal, String jamMulai, String jamSelesai,
-                   int idLapangan, String status, String namaLapangan, double totalHarga) {
+                   int idLapangan, String status, String namaLapangan, double totalHarga, int idUser) {
         this.id = id;
         this.nama = nama;
         this.tanggal = tanggal;
@@ -40,6 +43,7 @@ public class Booking {
         this.status = status;
         this.namaLapangan = namaLapangan;
         this.totalHarga = totalHarga;
+        this.idUser = idUser;
     }
 
     // Getter dan Setter
@@ -113,5 +117,13 @@ public class Booking {
 
     public void setTotalHarga(double totalHarga) {
         this.totalHarga = totalHarga;
+    }
+
+    public int getIdUser() {
+        return idUser;
+    }
+
+    public void setIdUser(int idUser) {
+        this.idUser = idUser;
     }
 }

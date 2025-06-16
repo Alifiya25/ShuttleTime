@@ -1,5 +1,6 @@
 package com.example.shuttletimesport;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ProgressBar;
@@ -10,8 +11,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.volley.Request;
-import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.android.material.button.MaterialButton;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -20,9 +22,6 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.google.android.material.button.MaterialButton;
-
-
 public class RiwayatBookingActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
@@ -30,16 +29,13 @@ public class RiwayatBookingActivity extends AppCompatActivity {
     private List<Booking> bookingList;
     private ProgressBar progressBar;
 
-    private static final String URL_RIWAYAT = "https://shuttletime.my.id/get_bookings.php?status=selesai";
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_riwayat_booking);
 
-        // Inisialisasi tombol kembali
         MaterialButton btnKembali = findViewById(R.id.btnKembali);
-        btnKembali.setOnClickListener(v -> finish()); // Tutup activity saat tombol diklik
+        btnKembali.setOnClickListener(v -> finish());
 
         recyclerView = findViewById(R.id.recyclerViewRiwayat);
         progressBar = findViewById(R.id.progressBar);
@@ -48,37 +44,53 @@ public class RiwayatBookingActivity extends AppCompatActivity {
         adapter = new RiwayatBookingAdapter(this, bookingList);
         recyclerView.setAdapter(adapter);
 
-        loadRiwayat();
+        SharedPreferences sharedPref = getSharedPreferences("user_pref", MODE_PRIVATE);
+        int userId = sharedPref.getInt("id_user", -1);
+
+        if (userId == -1) {
+            Toast.makeText(this, "Sesi login tidak valid. Silakan login ulang.", Toast.LENGTH_SHORT).show();
+            finish();
+            return;
+        }
+
+        String urlRiwayat = "https://shuttletime.my.id/get_bookings.php?status=selesai&id_user=" + userId;
+        loadRiwayat(urlRiwayat);
     }
 
-    private void loadRiwayat() {
+    private void loadRiwayat(String url) {
         progressBar.setVisibility(View.VISIBLE);
 
-        JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET, URL_RIWAYAT, null,
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
                 response -> {
                     progressBar.setVisibility(View.GONE);
                     bookingList.clear();
 
-                    for (int i = 0; i < response.length(); i++) {
-                        try {
-                            JSONObject obj = response.getJSONObject(i);
-                            Booking booking = new Booking();
-                            booking.setId(obj.getInt("id"));
-                            booking.setNama(obj.getString("nama"));
-                            booking.setTanggal(obj.getString("tanggal"));
-                            booking.setJamMulai(obj.getString("jam_mulai"));
-                            booking.setJamSelesai(obj.getString("jam_selesai"));
-                            booking.setStatus(obj.getString("status"));
-                            booking.setNamaLapangan(obj.getString("nama_lapangan"));
-                            booking.setTotalHarga(obj.getDouble("total_harga"));
+                    try {
+                        if (response.getString("status").equalsIgnoreCase("success")) {
+                            JSONArray dataArray = response.getJSONArray("data");
 
-                            bookingList.add(booking);
-                        } catch (JSONException e) {
-                            e.printStackTrace();
+                            for (int i = 0; i < dataArray.length(); i++) {
+                                JSONObject obj = dataArray.getJSONObject(i);
+                                Booking booking = new Booking();
+                                booking.setId(obj.getInt("id"));
+                                booking.setNama(obj.getString("nama"));
+                                booking.setTanggal(obj.getString("tanggal"));
+                                booking.setJamMulai(obj.getString("jam_mulai"));
+                                booking.setJamSelesai(obj.getString("jam_selesai"));
+                                booking.setStatus(obj.getString("status"));
+                                booking.setNamaLapangan(obj.getString("nama_lapangan"));
+                                booking.setTotalHarga(obj.getDouble("total_harga"));
+
+                                bookingList.add(booking);
+                            }
+                            adapter.notifyDataSetChanged();
+                        } else {
+                            Toast.makeText(this, "Tidak ada data ditemukan", Toast.LENGTH_SHORT).show();
                         }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                        Toast.makeText(this, "Error parsing data", Toast.LENGTH_SHORT).show();
                     }
-
-                    adapter.notifyDataSetChanged();
                 },
                 error -> {
                     progressBar.setVisibility(View.GONE);
