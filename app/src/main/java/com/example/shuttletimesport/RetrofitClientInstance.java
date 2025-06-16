@@ -5,7 +5,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetrofitClientInstance {
     private static Retrofit retrofit;
-    private static final String BASE_URL = "http://192.168.1.9/shuttletime_api/";
+    private static final String BASE_URL = "https://shuttletime.my.id/";
 
     public static Retrofit getRetrofitInstance() {
         if (retrofit == null) {

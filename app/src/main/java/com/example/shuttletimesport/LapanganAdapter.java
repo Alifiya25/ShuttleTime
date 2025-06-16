@@ -119,7 +119,7 @@ public class LapanganAdapter extends RecyclerView.Adapter<LapanganAdapter.ViewHo
         holder.tvFasilitas.setText("Fasilitas: " + lapangan.getFasilitas());
 
         Glide.with(context)
-                .load("http://shuttletime.rf.gd/uploads/" + lapangan.getGambar())
+                .load("https://shuttletime.my.id/uploads/" + lapangan.getGambar())
                 .into(holder.imageView);
 
         holder.itemView.setOnClickListener(v -> {

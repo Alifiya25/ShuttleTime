@@ -29,7 +29,7 @@ public class RegisterActivity extends AppCompatActivity {
     TextView tvLogin;
 
     // GANTI IP SESUAI IP KOMPUTER KAMU
-    private static final String URL = "http://10.0.2.2/shuttletime_api/register.php";
+    private static final String URL = "https://shuttletime.my.id/register.php";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

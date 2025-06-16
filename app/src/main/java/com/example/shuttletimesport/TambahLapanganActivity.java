@@ -31,7 +31,7 @@ public class TambahLapanganActivity extends AppCompatActivity {
     Bitmap bitmap;
 
     private static final int PICK_IMAGE_REQUEST = 1;
-    private static final String UPLOAD_URL = "http://shuttletime.rf.gd/tambah_lapangan.php"; // ✅ Ganti IP sesuai lokal
+    private static final String UPLOAD_URL = "https://shuttletime.my.id/tambah_lapangan.php"; // ✅ Ganti IP sesuai lokal
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

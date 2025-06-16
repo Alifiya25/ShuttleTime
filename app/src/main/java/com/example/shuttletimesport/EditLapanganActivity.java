@@ -73,7 +73,7 @@ public class EditLapanganActivity extends AppCompatActivity {
         etEditHarga.setText(String.valueOf(harga));
         etEditFasilitas.setText(fasilitas);
         Glide.with(this)
-                .load("http://shuttletime.rf.gd/uploads/" + gambar)
+                .load("https://shuttletime.my.id/uploads/" + gambar)
                 .into(ivEditGambar);
 
         int indexJenis = adapter.getPosition(jenis);
@@ -106,7 +106,7 @@ public class EditLapanganActivity extends AppCompatActivity {
     }
 
     private void updateLapanganToServer(int id, String nama, String jenis, int harga, String fasilitas, String gambar) {
-        String url = "http://shuttletime.rf.gd/update_lapangan.php";
+        String url = "https://shuttletime.my.id/update_lapangan.php";
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
                 response -> {

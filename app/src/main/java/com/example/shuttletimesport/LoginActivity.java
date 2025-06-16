@@ -57,7 +57,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void loginUser(String username, String password) {
-        String url = "http://192.168.1.9/shuttletime_api/login.php";
+        String url = "https://shuttletime.my.id/login.php";
 
         StringRequest request = new StringRequest(Request.Method.POST, url,
                 response -> {

@@ -33,7 +33,8 @@ public class BookingActivity extends AppCompatActivity {
     private TextView tvLapangan, tvHarga;
     private Button btnBooking, btnKembali;
 
-    private static final String URL = "http://192.168.1.9/shuttletime_api/booking.php";
+    private static final String URL = "https://shuttletime.my.id/booking.php";
+
 
     private int idLapangan;
     private int idUser = -1;

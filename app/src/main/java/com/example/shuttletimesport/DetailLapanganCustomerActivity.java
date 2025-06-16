@@ -39,7 +39,7 @@ public class DetailLapanganCustomerActivity extends AppCompatActivity {
             tvFasilitas.setText("Fasilitas: " + lapangan.getFasilitas());
 
             Glide.with(this)
-                    .load("http://shuttletime.rf.gd/uploads/" + lapangan.getGambar())
+                    .load("https://shuttletime.my.id/uploads/" + lapangan.getGambar())
                     .placeholder(R.drawable.placeholder)
                     .into(ivGambar);
 

@@ -102,12 +102,12 @@ public class DetailLapanganActivity extends AppCompatActivity {
         tvFasilitasDetail.setText("Fasilitas: " + fasilitas);
 
         Glide.with(this)
-                .load("http://10.0.2.2/shuttletime_api/uploads/" + gambar)
+                .load("https://10.0.2.2/shuttletime_api/uploads/" + gambar)
                 .into(ivGambarDetail);
     }
 
     private void hapusLapanganDariServer(int id) {
-        String url = "http://shuttletime.rf.gd/delete_lapangan.php";
+        String url = "https://shuttletime.my.id/delete_lapangan.php";
 
         StringRequest request = new StringRequest(Request.Method.POST, url,
                 response -> {
